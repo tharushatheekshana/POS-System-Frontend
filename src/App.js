@@ -15,6 +15,7 @@ import Help from "./Help";
 import Reports from "./Reports";
 import Cart from "./Cart";
 import Stocks from "./Stocks";
+import Invoice from "./Invoice";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/reports" element={<Reports />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/stocks" element={<Stocks />} />
+          <Route path="/invoice" element={<Invoice />} />
         </Routes>
       </BrowserRouter>
       {/* You can adjust the styling of the ToastContainer */}

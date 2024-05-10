@@ -21,3 +21,35 @@
   }
 }
 
+/* @media print {
+  body * {
+    visibility: hidden;
+  }
+  .modal-footer {
+    display: none !important;
+  }
+  .modal-header {
+    display: none !important;
+  }
+  #modalContent,
+  #modalContent * {
+    visibility: visible;
+  }
+  #modalContent {
+    position: absolute;
+    max-height: 277mm;
+    overflow: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+} */
+
+.center-print {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
