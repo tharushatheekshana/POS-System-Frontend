@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useAuth } from "./utils/AuthContext";
 
 function Items() {
   const [name, setName] = useState("");
@@ -15,29 +16,38 @@ function Items() {
   const [activeTab, setActiveTab] = useState("items");
   const [newCategoryName, setNewCategoryName] = useState("");
   const [file, setFile] = useState("");
+  const { isAuthenticated, jwtToken } = useAuth();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  };
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/items")
-      .then((res) => {
-        setItems(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (isAuthenticated) {
+      axios
+        .get("http://localhost:8080/items", config)
+        .then((res) => {
+          setItems(res.data);
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
-    axios
-      .get("http://localhost:8080/categories")
-      .then((res) => {
-        setCategories(res.data);
-        if (res.data.length > 0) {
-          setSelectedCategory(res.data[0].name); // Auto select first category
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      axios
+        .get("http://localhost:8080/categories", config)
+        .then((res) => {
+          setCategories(res.data);
+          if (res.data.length > 0) {
+            setSelectedCategory(res.data[0].name); // Auto select first category
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   function handleName(event) {
@@ -129,7 +139,7 @@ function Items() {
     formData.append("file", file);
 
     axios
-      .post("http://localhost:8080/items", formData)
+      .post("http://localhost:8080/items", formData, config)
       .then((res) => {
         console.log(res.data);
         console.log(file);
@@ -145,7 +155,7 @@ function Items() {
 
   function getCategories() {
     axios
-      .get("http://localhost:8080/categories")
+      .get("http://localhost:8080/categories", config)
       .then((res) => {
         setCategories(res.data);
       })
@@ -156,7 +166,7 @@ function Items() {
 
   function deleteCategory(categoryId) {
     axios
-      .delete("http://localhost:8080/categories/" + categoryId)
+      .delete("http://localhost:8080/categories/" + categoryId, config)
       .then((res) => {
         getCategories();
         toast.success("Category deleted successfully");
@@ -177,7 +187,7 @@ function Items() {
     };
 
     axios
-      .post("http://localhost:8080/categories", data)
+      .post("http://localhost:8080/categories", data, config)
       .then((res) => {
         setCategoryName("");
         setCategories([...categories, res.data]);
@@ -194,7 +204,7 @@ function Items() {
     };
 
     axios
-      .put("http://localhost:8080/categories/" + categoryId, data)
+      .put("http://localhost:8080/categories/" + categoryId, data, config)
       .then((res) => {
         getCategories();
         setNewCategoryName("");
@@ -208,7 +218,7 @@ function Items() {
 
   function handleDelete(ItemId) {
     axios
-      .delete("http://localhost:8080/items/" + ItemId)
+      .delete("http://localhost:8080/items/" + ItemId, config)
       .then((res) => {
         getItems();
         toast.success("Item deleted successfully");
@@ -229,7 +239,7 @@ function Items() {
     formData.append("file", file);
 
     axios
-      .put("http://localhost:8080/items/" + edit, formData)
+      .put("http://localhost:8080/items/" + edit, formData, config)
       .then((res) => {
         toast.success("Item updated successfully");
         console.log(res.data);
@@ -243,7 +253,7 @@ function Items() {
 
   function getItems() {
     axios
-      .get("http://localhost:8080/items")
+      .get("http://localhost:8080/items", config)
       .then((res) => {
         console.log(res);
         setItems(res.data);

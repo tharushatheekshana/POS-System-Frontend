@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useAuth } from "./utils/AuthContext";
 
 function Stocks() {
   const [Stocks, setStocks] = useState(null);
@@ -10,6 +11,37 @@ function Stocks() {
   const [description, setDescription] = useState("");
   const [stockCategories, setStockCategories] = useState(null);
   const [edit, setEdit] = useState(false);
+  const { jwtToken, isAuthenticated } = useAuth();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  };
+
+  useState(() => {
+    if (isAuthenticated) {
+      axios
+        .get("http://localhost:8080/stocks", config)
+        .then((response) => {
+          console.log(response.data);
+          setStocks(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      axios
+        .get("http://localhost:8080/stockcategories", config)
+        .then((response) => {
+          console.log(response.data);
+          setStockCategories(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, []);
 
   const handleQuantity = (event) => {
     setQuantity(event.target.value);
@@ -31,31 +63,9 @@ function Stocks() {
     setEdit(null);
   };
 
-  useState(() => {
-    axios
-      .get("http://localhost:8080/stocks")
-      .then((response) => {
-        console.log(response.data);
-        setStocks(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    axios
-      .get("http://localhost:8080/stockcategories")
-      .then((response) => {
-        console.log(response.data);
-        setStockCategories(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   function getStocks() {
     axios
-      .get("http://localhost:8080/stocks")
+      .get("http://localhost:8080/stocks", config)
       .then((response) => {
         console.log(response.data);
         setStocks(response.data);
@@ -76,7 +86,7 @@ function Stocks() {
     };
 
     axios
-      .put("http://localhost:8080/stocks" + edit, data)
+      .put("http://localhost:8080/stocks" + edit, data, config)
       .then((response) => {
         console.log(response.data);
         setStocks(response.data);
@@ -98,7 +108,7 @@ function Stocks() {
     console.log(data);
 
     axios
-      .post("http://localhost:8080/stocks", data)
+      .post("http://localhost:8080/stocks", data, config)
       .then((response) => {
         console.log(response.data);
         console.log(data);
@@ -259,7 +269,8 @@ function Stocks() {
                           onClick={() => {
                             axios
                               .delete(
-                                `http://localhost:8080/stocks/${stock.id}`
+                                `http://localhost:8080/stocks/${stock.id}`,
+                                config
                               )
                               .then((response) => {
                                 console.log(response.data);

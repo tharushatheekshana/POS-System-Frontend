@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "./App.css";
+import { useAuth } from "./utils/AuthContext";
 
 function Menu() {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const { isAuthenticated, logout } = useAuth();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -17,12 +20,12 @@ function Menu() {
   }, []);
 
   return (
-    <div class="my-navbar">
-      <nav className="d-flex flex-column flex-shrink-0 p-3 vh-100 position-fixed text-white bg-dark">
+    <div class="custom-menu">
+      <nav className="d-flex flex-column flex-shrink-0 p-3 custom-menu vh-100 position-fixed">
         <div>
           <h2>{currentTime.toLocaleDateString()}</h2>
 
-          <h3 className="text-white text-center">
+          <h3 className="text-center">
             {currentTime
               .toLocaleTimeString([], {
                 hour: "2-digit",
@@ -61,7 +64,7 @@ function Menu() {
               <i className="bi bi-file-earmark-text me-2"></i> Reports
             </Link>
           </li>
-         
+
           <li className="nav-item fs-4">
             <Link to="/help" className="nav-link">
               <i className="bi bi-question-circle me-2"></i> Help
@@ -77,11 +80,13 @@ function Menu() {
               <i className="bi bi-file-earmark-arrow-down me-2"></i> Contact Us
             </Link>
           </li>
-          <li className="nav-item fs-4">
-            <Link to="/logout" className="nav-link">
-              <i className="bi bi-box-arrow-right me-2"></i> Logout
-            </Link>
-          </li>
+          {isAuthenticated && (
+            <li className="nav-item fs-4">
+              <Link className="nav-link" onClick={logout}>
+                <i className="bi bi-box-arrow-right me-2"></i> Logout
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </div>

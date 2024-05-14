@@ -1,17 +1,28 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import "./App.css";
+import { useAuth } from "./utils/AuthContext";
 
 function Orders() {
   const [orders, setOrders] = useState(null);
+  const { isAuthenticated, jwtToken } = useAuth();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  };
 
   useEffect(() => {
-    getOrders();
-  }, []);
+    if (isAuthenticated) {
+      getOrders();
+    }
+  }, [isAuthenticated]);
 
   const getOrders = () => {
     axios
-      .get(`http://localhost:8080/orders`)
+      .get(`http://localhost:8080/orders`, config)
       .then((response) => {
         setOrders(response.data);
       })
@@ -23,7 +34,7 @@ function Orders() {
 
   const handleCancelOrder = (orderId) => {
     axios
-      .delete(`http://localhost:8080/orders/${orderId}`)
+      .delete(`http://localhost:8080/orders/${orderId}`, config)
       .then(() => {
         toast.success("Order canceled successfully");
         getOrders();
@@ -36,7 +47,7 @@ function Orders() {
 
   const handleRemoveItemFromOrder = (orderId, itemId) => {
     axios
-      .delete(`http://localhost:8080/orders/${orderId}/item/${itemId}`)
+      .delete(`http://localhost:8080/orders/${orderId}/item/${itemId}`, config)
       .then(() => {
         toast.success("Item removed from order");
         getOrders();

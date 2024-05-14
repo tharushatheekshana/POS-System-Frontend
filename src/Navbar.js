@@ -6,7 +6,7 @@ function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark  sticky-top">
+    <nav className="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
       <div class="container-fluid">
         <Link to="/" class="navbar-brand">
           <h2>Shanghai Family Restaurant</h2>
@@ -51,11 +51,6 @@ function Navbar() {
                 aria-current="page"
               >
                 Categories
-              </Link>
-            </li>
-            <li class="nav-item">
-              <Link to="/users" class="nav-link active" aria-current="page">
-                Users
               </Link>
             </li>
 

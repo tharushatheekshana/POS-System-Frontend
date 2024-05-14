@@ -15,31 +15,114 @@ import Help from "./Help";
 import Reports from "./Reports";
 import Cart from "./Cart";
 import Stocks from "./Stocks";
-import Invoice from "./Invoice";
+import { AuthProvider } from "./utils/AuthContext";
+import ProtectedRoute from "./utils/ProtectedRoute";
+import { OrderProvider } from "./OrderContext";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <BrowserRouter>
-        <Navbar />
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/items" element={<Items />} />
-          <Route path="/checkout" element={<CheckOut />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/help" element={<Help />} />
-          <Route path="/reports" element={<Reports />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/stocks" element={<Stocks />} />
-          <Route path="/invoice" element={<Invoice />} />
+          <Route element={<ProtectedRoute />}>
+            <Route
+              path="/"
+              element={
+                <OrderProvider>
+                  <>
+                    <Navbar />
+                    <Home />
+                  </>
+                </OrderProvider>
+              }
+            />
+            <Route
+              path="/items"
+              element={
+                <>
+                  <Navbar />
+                  <Items />
+                </>
+              }
+            />
+            <Route
+              path="/checkout"
+              element={
+                <>
+                  <Navbar />
+                  <CheckOut />
+                </>
+              }
+            />
+            <Route
+              path="/orders"
+              element={
+                <>
+                  <Navbar />
+                  <Orders />
+                </>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <>
+                  <Navbar />
+                  <About />
+                </>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <>
+                  <Navbar />
+                  <Contact />
+                </>
+              }
+            />
+            <Route
+              path="/help"
+              element={
+                <>
+                  <Navbar />
+                  <Help />
+                </>
+              }
+            />
+            <Route
+              path="/reports"
+              element={
+                <>
+                  <Navbar />
+                  <Reports />
+                </>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <>
+                  <Navbar />
+                  <Cart />
+                </>
+              }
+            />
+            <Route
+              path="/stocks"
+              element={
+                <>
+                  <Navbar />
+                  <Stocks />
+                </>
+              }
+            />
+          </Route>
         </Routes>
       </BrowserRouter>
-      {/* You can adjust the styling of the ToastContainer */}
       <ToastContainer position="bottom-right" theme="colored" />
-    </>
+    </AuthProvider>
   );
 }
 

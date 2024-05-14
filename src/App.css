@@ -21,35 +21,74 @@
   }
 }
 
-/* @media print {
-  body * {
-    visibility: hidden;
-  }
-  .modal-footer {
-    display: none !important;
-  }
-  .modal-header {
-    display: none !important;
-  }
-  #modalContent,
-  #modalContent * {
-    visibility: visible;
-  }
-  #modalContent {
-    position: absolute;
-    max-height: 277mm;
-    overflow: auto;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
+/* .my-navbar {
+  background-color: #512da8;
 } */
 
-.center-print {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
+.custom-navbar {
+  background-color: #1a202c;
+  color: white;
+}
+
+/* .custom-menu {
+  background-color: #1a202c;
+  color: white;
+}
+
+.item-body {
+  background-color: #1a202c;
+  color: white;
+} */
+
+/* .custom-checkout {
+  background-color: #1a202c;
+  color: white;
+}
+
+.modal-dark .modal-content {
+  background-color: #212529;
+  color: white;
+}
+
+.modal-dark .modal-header,
+.modal-dark .modal-footer {
+  border-color: #434a50;
+}
+
+.modal-dark .modal-header .close {
+  color: white;
+}
+
+.modal-dark .modal-title {
+  color: white;
+} */
+
+/* @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"); */
+
+/* @import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"); */
+
+@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poetsen One", cursive;
+}
+.order-button {
+  background-color: #512da8;
+  color: #fff;
+  font-size: 12px;
+  padding: 10px 45px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+body {
+  background-color: #1a202c;
 }
