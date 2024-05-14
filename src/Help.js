@@ -2,6 +2,7 @@ import React from "react";
 
 function FAQPage() {
   return (
+    <div className="item-body">
     <div className="container">
       <h1 className="text-center">Frequently Asked Questions</h1>
       <div className="row">
@@ -77,6 +78,7 @@ function FAQPage() {
         </div>
       </div>
     </div>
+  </div>
   );
 }
 

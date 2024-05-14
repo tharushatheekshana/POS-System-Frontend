@@ -70,77 +70,79 @@ function Orders() {
   };
 
   return (
-    <div className="container mt-4">
-      <h1 className="text-center mb-4">Orders</h1>
-      {orders && orders.length === 0 ? (
-        <div className="text-center">
-          <p>No orders available</p>
-        </div>
-      ) : (
-        <div>
-          <table className="table table-striped rounded">
-            <thead>
-              <tr>
-                <th>#ID</th>
-                <th>Date and Time</th>
-                <th>Table No</th>
-                <th>Order Items</th>
-                <th>Total Price</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders &&
-                orders.map((order) => (
-                  <tr key={order.id}>
-                    <td>{order.id}</td>
-                    <td>{formatDateTime(order.orderDate)}</td>
-                    <td>{order.tableNo}</td>
-                    <td>
-                      <ul>
-                        {order.orderItems.map((item) => (
-                          <li key={item.id}>
-                            <div className="d-flex justify-content-between">
-                              <div>
-                                <h5>{item.item.name}</h5>
-                                <p>
-                                  Quantity: {item.quantity}, Price: Rs.{" "}
-                                  {item.item.price}
-                                </p>
+    <div className="item-body">
+      <div className="container">
+        <h1 className="text-center mb-4">Orders</h1>
+        {orders && orders.length === 0 ? (
+          <div className="text-center">
+            <p>No orders available</p>
+          </div>
+        ) : (
+          <div>
+            <table className="table table-striped rounded">
+              <thead>
+                <tr>
+                  <th>#ID</th>
+                  <th>Date and Time</th>
+                  <th>Table No</th>
+                  <th>Order Items</th>
+                  <th>Total Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orders &&
+                  orders.map((order) => (
+                    <tr key={order.id}>
+                      <td>{order.id}</td>
+                      <td>{formatDateTime(order.orderDate)}</td>
+                      <td>{order.tableNo}</td>
+                      <td>
+                        <ul>
+                          {order.orderItems.map((item) => (
+                            <li key={item.id}>
+                              <div className="d-flex justify-content-between">
+                                <div>
+                                  <h5>{item.item.name}</h5>
+                                  <p>
+                                    Quantity: {item.quantity}, Price: Rs.{" "}
+                                    {item.item.price}
+                                  </p>
+                                </div>
+                                <span>
+                                  <button
+                                    className="btn btn-danger btn-sm"
+                                    onClick={() =>
+                                      handleRemoveItemFromOrder(
+                                        order.id,
+                                        item.item.id
+                                      )
+                                    }
+                                  >
+                                    Remove
+                                  </button>
+                                </span>
                               </div>
-                              <span>
-                                <button
-                                  className="btn btn-danger btn-sm"
-                                  onClick={() =>
-                                    handleRemoveItemFromOrder(
-                                      order.id,
-                                      item.item.id
-                                    )
-                                  }
-                                >
-                                  Remove
-                                </button>
-                              </span>
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </td>
-                    <td>Rs.{order.totalPrice}</td>
-                    <td>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => handleCancelOrder(order.id)}
-                      >
-                        Cancel Order
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+                            </li>
+                          ))}
+                        </ul>
+                      </td>
+                      <td>Rs.{order.totalPrice}</td>
+                      <td>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => handleCancelOrder(order.id)}
+                        >
+                          Cancel Order
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

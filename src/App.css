@@ -25,23 +25,39 @@
   background-color: #512da8;
 } */
 
-.custom-navbar {
-  background-color: #1a202c;
+.body {
+  background-color: #29221d;
+  color: green;
+}
+
+.category-nav {
+  background-color: #29221d;
   color: white;
 }
 
-/* .custom-menu {
-  background-color: #1a202c;
+.custom-navbar {
+  background-color: #29221d;
+  color: white;
+}
+
+.custom-menu {
+  background-color: #29221d;
+  color: white;
+}
+
+.custom-checkout {
+  background-color: #29221d;
   color: white;
 }
 
 .item-body {
-  background-color: #1a202c;
+  background-color: #29221d;
   color: white;
-} */
+  min-height: 100vh;
+}
 
-/* .custom-checkout {
-  background-color: #1a202c;
+.orders-body {
+  background-color: #29221d;
   color: white;
 }
 
@@ -61,7 +77,7 @@
 
 .modal-dark .modal-title {
   color: white;
-} */
+}
 
 /* @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"); */
 
@@ -87,8 +103,4 @@
   text-transform: uppercase;
   margin-top: 10px;
   cursor: pointer;
-}
-
-body {
-  background-color: #1a202c;
 }

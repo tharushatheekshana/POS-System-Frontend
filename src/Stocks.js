@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "./utils/AuthContext";
+import "./App.css";
 
 function Stocks() {
   const [Stocks, setStocks] = useState(null);
@@ -121,175 +122,177 @@ function Stocks() {
   }
 
   return (
-    <div className="container">
-      <h1> Kitchen Stocks</h1>
-      <hr />
-      <div className="row">
-        <div className="col-md">
-          <div className="card">
-            <div className="card-body">
-              {!edit && (
-                <div>
-                  <h5 className="card-title">Add Product</h5>
-                  <select
-                    className="form-control"
-                    onChange={handleCategory}
-                    defaultValue={"DEFAULT"}
-                  >
-                    <option value="DEFAULT" disabled>
-                      Select Category
-                    </option>
-                    {stockCategories &&
-                      stockCategories.map((category) => (
-                        <option key={category.id} value={category.id}>
-                          {category.name}
-                        </option>
-                      ))}
-                  </select>
-                  <br />
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Name"
-                    onChange={handleName}
-                  />
-                  <br />
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Quantity"
-                    onChange={handleQuantity}
-                  />
-                  <br />
+    <div className="item-body">
+      <div className="container">
+        <h1> Kitchen Stocks</h1>
+        <hr />
+        <div className="row">
+          <div className="col-md">
+            <div className="card">
+              <div className="card-body">
+                {!edit && (
+                  <div>
+                    <h5 className="card-title">Add Product</h5>
+                    <select
+                      className="form-control"
+                      onChange={handleCategory}
+                      defaultValue={"DEFAULT"}
+                    >
+                      <option value="DEFAULT" disabled>
+                        Select Category
+                      </option>
+                      {stockCategories &&
+                        stockCategories.map((category) => (
+                          <option key={category.id} value={category.id}>
+                            {category.name}
+                          </option>
+                        ))}
+                    </select>
+                    <br />
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Name"
+                      onChange={handleName}
+                    />
+                    <br />
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Quantity"
+                      onChange={handleQuantity}
+                    />
+                    <br />
 
-                  <textarea
-                    className="form-control"
-                    placeholder="Description"
-                    onChange={handleDescription}
-                    rows={3}
-                  />
+                    <textarea
+                      className="form-control"
+                      placeholder="Description"
+                      onChange={handleDescription}
+                      rows={3}
+                    />
 
-                  <br />
-                  <button
-                    className="btn btn-primary"
-                    onClick={handleAddProduct}
-                  >
-                    Add Product
-                  </button>
-                </div>
-              )}
-              {edit && (
-                <div>
-                  <h5 className="card-title">Update Product</h5>
-                  <select
-                    className="form-control"
-                    onChange={handleCategory}
-                    defaultValue={"DEFAULT"}
-                  >
-                    <option value="DEFAULT" disabled>
-                      Select Category
-                    </option>
-                    {stockCategories &&
-                      stockCategories.map((category) => (
-                        <option key={category.id} value={category.id}>
-                          {category.name}
-                        </option>
-                      ))}
-                  </select>
-                  <br />
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Name"
-                    onChange={handleName}
-                  />
-                  <br />
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Quantity"
-                    onChange={handleQuantity}
-                  />
-                  <br />
+                    <br />
+                    <button
+                      className="btn btn-primary"
+                      onClick={handleAddProduct}
+                    >
+                      Add Product
+                    </button>
+                  </div>
+                )}
+                {edit && (
+                  <div>
+                    <h5 className="card-title">Update Product</h5>
+                    <select
+                      className="form-control"
+                      onChange={handleCategory}
+                      defaultValue={"DEFAULT"}
+                    >
+                      <option value="DEFAULT" disabled>
+                        Select Category
+                      </option>
+                      {stockCategories &&
+                        stockCategories.map((category) => (
+                          <option key={category.id} value={category.id}>
+                            {category.name}
+                          </option>
+                        ))}
+                    </select>
+                    <br />
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Name"
+                      onChange={handleName}
+                    />
+                    <br />
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Quantity"
+                      onChange={handleQuantity}
+                    />
+                    <br />
 
-                  <textarea
-                    className="form-control"
-                    placeholder="Description"
-                    onChange={handleDescription}
-                    rows={3}
-                  />
-                  <br />
-                  <button className="btn btn-primary" onClick={handleUpdate}>
-                    Update Product
-                  </button>
-                  <button className="btn btn-danger" onClick={handleCancel}>
-                    Cancel
-                  </button>
-                </div>
-              )}
+                    <textarea
+                      className="form-control"
+                      placeholder="Description"
+                      onChange={handleDescription}
+                      rows={3}
+                    />
+                    <br />
+                    <button className="btn btn-primary" onClick={handleUpdate}>
+                      Update Product
+                    </button>
+                    <button className="btn btn-danger" onClick={handleCancel}>
+                      Cancel
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="col-md">
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Stocks &&
-                Stocks.map((stock) => (
-                  <tr key={stock.id}>
-                    <td>{stock.stockCategory?.name}</td>
-                    <td>{stock.name}</td>
-                    <td>{stock.description}</td>
-                    <td>{stock.quantity}</td>
-                    <td>
-                      <div className="btn-group" role="group">
-                        <button
-                          className="btn btn-primary"
-                          onClick={() => {
-                            setEdit(stock.id);
-                            setQuantity(stock.quantity);
-                            setName(stock.name);
-                            setCategory(stock.category);
-                            setDescription(stock.description);
-                          }}
-                        >
-                          Edit
-                        </button>
+          <div className="col-md">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Quantity</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Stocks &&
+                  Stocks.map((stock) => (
+                    <tr key={stock.id}>
+                      <td>{stock.stockCategory?.name}</td>
+                      <td>{stock.name}</td>
+                      <td>{stock.description}</td>
+                      <td>{stock.quantity}</td>
+                      <td>
+                        <div className="btn-group" role="group">
+                          <button
+                            className="btn btn-primary"
+                            onClick={() => {
+                              setEdit(stock.id);
+                              setQuantity(stock.quantity);
+                              setName(stock.name);
+                              setCategory(stock.category);
+                              setDescription(stock.description);
+                            }}
+                          >
+                            Edit
+                          </button>
 
-                        <button
-                          className="btn btn-danger"
-                          onClick={() => {
-                            axios
-                              .delete(
-                                `http://localhost:8080/stocks/${stock.id}`,
-                                config
-                              )
-                              .then((response) => {
-                                console.log(response.data);
-                                getStocks();
-                                toast.success("Product deleted successfully");
-                              })
-                              .catch((error) => {
-                                console.log(error);
-                              });
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+                          <button
+                            className="btn btn-danger"
+                            onClick={() => {
+                              axios
+                                .delete(
+                                  `http://localhost:8080/stocks/${stock.id}`,
+                                  config
+                                )
+                                .then((response) => {
+                                  console.log(response.data);
+                                  getStocks();
+                                  toast.success("Product deleted successfully");
+                                })
+                                .catch((error) => {
+                                  console.log(error);
+                                });
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

@@ -80,8 +80,8 @@ function Cart() {
   };
 
   return (
-    <div>
-      <div className="container mt-4">
+    <div className="item-body">
+      <div className="container">
         <h1 className="text-center mb-4">Your Cart</h1>
         {cart.length === 0 ? (
           <div className="text-center">

@@ -6,7 +6,7 @@ function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+    <nav className="navbar navbar-expand-sm navbar-dark sticky-top custom-navbar">
       <div class="container-fluid">
         <Link to="/" class="navbar-brand">
           <h2>Shanghai Family Restaurant</h2>
@@ -91,13 +91,13 @@ function Navbar() {
               </a>
             </li> */}
           </ul>
-          <Button onClick={() => toggleColorMode()} mr={2}>
+          {/* <Button onClick={() => toggleColorMode()} mr={2}>
             {colorMode === "dark" ? (
               <SunIcon color="orange.200" />
             ) : (
               <MoonIcon color="blue.700" />
             )}
-          </Button>
+          </Button> */}
 
           <form class="d-flex" role="search">
             <input

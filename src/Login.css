@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
-
-
 .custom-body {
   background-color: #c9d6ff;
-  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+  background-color: #29221d;
+  color: #333;
+  /* background: linear-gradient(to right, #e2e2e2, #c9d6ff); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +71,8 @@
 }
 
 .custom-container input {
-  background-color: #eee;
+  background-color: #212529;
+  color: white;
   border: none;
   margin: 8px 0;
   padding: 10px 15px;

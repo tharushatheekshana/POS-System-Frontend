@@ -1,11 +1,11 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { MyContext } from "./Home";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useReactToPrint } from "react-to-print";
 import { useAuth } from "./utils/AuthContext";
 import { Button, Modal } from "react-bootstrap";
 import { useOrder } from "./OrderContext";
+import "./App.css";
 
 function CheckOut({ orders }) {
   console.log("Orders:", orders);
@@ -167,10 +167,32 @@ function CheckOut({ orders }) {
       });
   };
 
+  function handlePlaceOrder() {
+    const data = {
+      orderComplete: 1,
+    };
+
+    axios
+      .put(`http://localhost:8080/orders/${orderId}`, data, config)
+      .then((response) => {
+        console.log(response.data);
+        setOrderId("");
+        setIsOrderCreated(false);
+        setTable("");
+        orders.orderItems = [];
+        orders = null;
+        setQuantityMap(new Map());
+        toast.success("Order placed successfully");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   return (
     <div>
       {/* {CheckOut Page} */}
-      <div className="col-3 custom-checkout">
+      <div className="col-3 bg-dark">
         <div className="container mt-2">
           <div className="checkout position-fixed">
             <h2>Enter Table Number</h2>
@@ -276,7 +298,7 @@ function CheckOut({ orders }) {
                 <button className="order-button me-2" onClick={handleShow}>
                   Print Invoice
                 </button>
-                <button className="order-button" onClick={handleShow}>
+                <button className="order-button" onClick={handlePlaceOrder}>
                   Place Order
                 </button>
               </div>

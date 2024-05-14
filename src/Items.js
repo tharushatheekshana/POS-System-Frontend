@@ -264,259 +264,236 @@ function Items() {
   }
 
   return (
-    <div className="App">
-      <div class="container">
-        <div className="row">
-          <div className="col-md-4">
-            <h2 className="mt-4">Manage</h2>
-            <div className="col-md-12">
-              <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                <li className="nav-item" role="presentation">
-                  <button
-                    className={`nav-link ${
-                      activeTab === "items" ? "active" : ""
-                    }`}
-                    onClick={() => handleTabChange("items")}
-                  >
-                    <h5>Manage Items</h5>
-                  </button>
-                </li>
-                <li className="nav-item" role="presentation">
-                  <button
-                    className={`nav-link ${
-                      activeTab === "categories" ? "active" : ""
-                    }`}
-                    onClick={() => handleTabChange("categories")}
-                  >
-                    <h5>Manage Categories</h5>
-                  </button>
-                </li>
-              </ul>
-
-              <div className="tab-content" id="pills-tabContent">
-                <div
-                  className={`tab-pane fade ${
-                    activeTab === "items" ? "show active" : ""
-                  }`}
-                  role="tabpanel"
+    <div className="item-body">
+      <div className="App">
+        <div class="container ">
+          <div className="row">
+            <div className="col-md-4">
+              <h2 className="mt-4">Manage</h2>
+              <div className="col-md-12">
+                <ul
+                  className="nav nav-pills mb-3"
+                  id="pills-tab"
+                  role="tablist"
                 >
-                  {!edit && (
-                    <form
-                      onSubmit={handleSubmit}
-                      className="mt-4"
-                      encType="multipart/form-data"
+                  <li className="nav-item" role="presentation">
+                    <button
+                      className={`nav-link ${
+                        activeTab === "items" ? "active" : ""
+                      }`}
+                      onClick={() => handleTabChange("items")}
                     >
-                      <h2 className="mt-4 text-success">Add Item</h2>
-
-                      <div className="mb-3">
-                        <label className="form-label">Item Category</label>
-                        <select
-                          className="form-select"
-                          onChange={handleCategory}
-                          value={categoryId}
-                          required
-                        >
-                          <option>Select Category</option>
-                          {categories &&
-                            categories.map((category) => (
-                              <option key={category.id} value={category.id}>
-                                {category.name}
-                              </option>
-                            ))}
-                        </select>
-                      </div>
-                      <div className="mb-3">
-                        <label className="form-label">Item Name</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          onChange={handleName}
-                          value={name}
-                          required
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <label className="form-label">Item Price</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          onChange={handlePrice}
-                          value={price}
-                          required
-                        />
-                      </div>
-
-                      <div className="mb-3">
-                        <label className="form-label">Item Description</label>
-                        <textarea
-                          className="form-control"
-                          onChange={handleDescription}
-                          value={description}
-                          rows="3"
-                          required
-                        ></textarea>
-                      </div>
-                      <div className="mb-3">
-                        <label className="form-label">Item Image</label>
-                        <input
-                          type="file"
-                          className="form-control"
-                          onChange={handleFileChange}
-                          required
-                        />
-                        {file && (
-                          <img
-                            src={URL.createObjectURL(file)}
-                            className="img-fluid img-thumbnail"
-                            alt="Preview"
-                          />
-                        )}
-                      </div>
-                      <button type="submit" className="btn btn-primary">
-                        Submit
-                      </button>
-                    </form>
-                  )}
-
-                  {edit && (
-                    <form
-                      onSubmit={handleUpdate}
-                      className="mt-4"
-                      encType="multipart/form-data"
+                      <h5>Manage Items</h5>
+                    </button>
+                  </li>
+                  <li className="nav-item" role="presentation">
+                    <button
+                      className={`nav-link ${
+                        activeTab === "categories" ? "active" : ""
+                      }`}
+                      onClick={() => handleTabChange("categories")}
                     >
-                      <h2 className="mt-4">Update Item</h2>
+                      <h5>Manage Categories</h5>
+                    </button>
+                  </li>
+                </ul>
 
-                      <div className="mb-3">
-                        <label className="form-label">Item Category</label>
-                        <select
-                          className="form-select"
-                          onChange={handleCategory}
-                          value={categoryId}
-                          required
-                        >
-                          <option disabled>Select Category</option>
-                          {categories &&
-                            categories.map((category) => (
-                              <option key={category.id} value={category.id}>
-                                {category.name}
-                              </option>
-                            ))}
-                        </select>
-                      </div>
-                      <div className="mb-3">
-                        <label className="form-label">Item Name</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          value={name}
-                          onChange={handleName}
-                          required
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <label className="form-label">Item Price</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          value={price}
-                          onChange={handlePrice}
-                          required
-                        />
-                      </div>
+                <div className="tab-content" id="pills-tabContent">
+                  <div
+                    className={`tab-pane fade ${
+                      activeTab === "items" ? "show active" : ""
+                    }`}
+                    role="tabpanel"
+                  >
+                    {!edit && (
+                      <form
+                        onSubmit={handleSubmit}
+                        className="mt-4"
+                        encType="multipart/form-data"
+                      >
+                        <h2 className="mt-4 text-success">Add Item</h2>
 
-                      <div className="mb-3">
-                        <label className="form-label">Item Description</label>
-                        <textarea
-                          className="form-control"
-                          value={description}
-                          onChange={handleDescription}
-                          rows="3"
-                          required
-                        ></textarea>
-                      </div>
-                      <div className="mb-3">
-                        <label className="form-label">Item Image</label>
-                        <input
-                          type="file"
-                          className="form-control"
-                          onChange={handleFileChange}
-                          required
-                        />
-                        {file && (
-                          <img
-                            src={URL.createObjectURL(file)}
-                            className="img-fluid img-thumbnail"
-                            alt="Preview"
+                        <div className="mb-3">
+                          <label className="form-label">Item Category</label>
+                          <select
+                            className="form-select"
+                            onChange={handleCategory}
+                            value={categoryId}
+                            required
+                          >
+                            <option>Select Category</option>
+                            {categories &&
+                              categories.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                  {category.name}
+                                </option>
+                              ))}
+                          </select>
+                        </div>
+                        <div className="mb-3">
+                          <label className="form-label">Item Name</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            onChange={handleName}
+                            value={name}
+                            required
                           />
-                        )}
-                      </div>
+                        </div>
+                        <div className="mb-3">
+                          <label className="form-label">Item Price</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            onChange={handlePrice}
+                            value={price}
+                            required
+                          />
+                        </div>
 
-                      <button type="submit" className="btn btn-primary">
-                        Update
-                      </button>
+                        <div className="mb-3">
+                          <label className="form-label">Item Description</label>
+                          <textarea
+                            className="form-control"
+                            onChange={handleDescription}
+                            value={description}
+                            rows="3"
+                            required
+                          ></textarea>
+                        </div>
+                        <div className="mb-3">
+                          <label className="form-label">Item Image</label>
+                          <input
+                            type="file"
+                            className="form-control"
+                            onChange={handleFileChange}
+                            required
+                          />
+                          {file && (
+                            <img
+                              src={URL.createObjectURL(file)}
+                              className="img-fluid img-thumbnail"
+                              alt="Preview"
+                            />
+                          )}
+                        </div>
+                        <button type="submit" className="btn btn-primary">
+                          Submit
+                        </button>
+                      </form>
+                    )}
 
-                      <button
-                        className="btn btn-primary ms-2"
-                        onClick={handleCancel}
+                    {edit && (
+                      <form
+                        onSubmit={handleUpdate}
+                        className="mt-4"
+                        encType="multipart/form-data"
                       >
-                        Cancel
-                      </button>
-                    </form>
-                  )}
-                </div>
+                        <h2 className="mt-4">Update Item</h2>
 
-                <div
-                  className={`tab-pane fade ${
-                    activeTab === "categories" ? "show active" : ""
-                  }`}
-                  role="tabpanel"
-                >
-                  <form onSubmit={addCategory} className="mt-2">
-                    <h2 className="">Add Category</h2>
-                    <label className="form-label">Category Name</label>
-                    <div className="input-group mb-3">
-                      <input
-                        type="text"
-                        className="form-control"
-                        onChange={handleAddCategory}
-                        value={categoryName}
-                        required
-                      />
-                      <button type="submit" className="btn btn-primary me-2">
-                        Add Category
-                      </button>
-                    </div>
-                  </form>
-                  <div className="mt-4">
-                    <h2>Delete Category</h2>
-                    <div className="input-group mb-1">
-                      <select
-                        className="form-select"
-                        onChange={handleCategory}
-                        required
-                      >
-                        <option selected>Select Category</option>
-                        {categories &&
-                          categories.map((category) => (
-                            <option key={category.id} value={category.id}>
-                              {category.name}
-                            </option>
-                          ))}
-                      </select>
-                      <button
-                        type="submit"
-                        className="btn btn-danger mt-2"
-                        onClick={() => {
-                          deleteCategory(categoryId);
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </div>
+                        <div className="mb-3">
+                          <label className="form-label">Item Category</label>
+                          <select
+                            className="form-select"
+                            onChange={handleCategory}
+                            value={categoryId}
+                            required
+                          >
+                            <option disabled>Select Category</option>
+                            {categories &&
+                              categories.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                  {category.name}
+                                </option>
+                              ))}
+                          </select>
+                        </div>
+                        <div className="mb-3">
+                          <label className="form-label">Item Name</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            value={name}
+                            onChange={handleName}
+                            required
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <label className="form-label">Item Price</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            value={price}
+                            onChange={handlePrice}
+                            required
+                          />
+                        </div>
+
+                        <div className="mb-3">
+                          <label className="form-label">Item Description</label>
+                          <textarea
+                            className="form-control"
+                            value={description}
+                            onChange={handleDescription}
+                            rows="3"
+                            required
+                          ></textarea>
+                        </div>
+                        <div className="mb-3">
+                          <label className="form-label">Item Image</label>
+                          <input
+                            type="file"
+                            className="form-control"
+                            onChange={handleFileChange}
+                            required
+                          />
+                          {file && (
+                            <img
+                              src={URL.createObjectURL(file)}
+                              className="img-fluid img-thumbnail"
+                              alt="Preview"
+                            />
+                          )}
+                        </div>
+
+                        <button type="submit" className="btn btn-primary">
+                          Update
+                        </button>
+
+                        <button
+                          className="btn btn-primary ms-2"
+                          onClick={handleCancel}
+                        >
+                          Cancel
+                        </button>
+                      </form>
+                    )}
                   </div>
-                  <div className="mt-4">
+
+                  <div
+                    className={`tab-pane fade ${
+                      activeTab === "categories" ? "show active" : ""
+                    }`}
+                    role="tabpanel"
+                  >
+                    <form onSubmit={addCategory} className="mt-2">
+                      <h2 className="">Add Category</h2>
+                      <label className="form-label">Category Name</label>
+                      <div className="input-group mb-3">
+                        <input
+                          type="text"
+                          className="form-control"
+                          onChange={handleAddCategory}
+                          value={categoryName}
+                          required
+                        />
+                        <button type="submit" className="btn btn-primary me-2">
+                          Add Category
+                        </button>
+                      </div>
+                    </form>
                     <div className="mt-4">
-                      <h2>Update Category</h2>
+                      <h2>Delete Category</h2>
                       <div className="input-group mb-1">
                         <select
                           className="form-select"
@@ -531,122 +508,151 @@ function Items() {
                               </option>
                             ))}
                         </select>
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="New Category Name"
-                          value={newCategoryName}
-                          onChange={(e) => setNewCategoryName(e.target.value)}
-                          required
-                        />
+                        <button
+                          type="submit"
+                          className="btn btn-danger mt-2"
+                          onClick={() => {
+                            deleteCategory(categoryId);
+                          }}
+                        >
+                          Delete
+                        </button>
                       </div>
-                      <button
-                        type="submit"
-                        className="btn btn-primary mt-2"
-                        onClick={() => {
-                          updateCategory(categoryId);
-                        }}
-                      >
-                        Update
-                      </button>
+                    </div>
+                    <div className="mt-4">
+                      <div className="mt-4">
+                        <h2>Update Category</h2>
+                        <div className="input-group mb-1">
+                          <select
+                            className="form-select"
+                            onChange={handleCategory}
+                            required
+                          >
+                            <option selected>Select Category</option>
+                            {categories &&
+                              categories.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                  {category.name}
+                                </option>
+                              ))}
+                          </select>
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="New Category Name"
+                            value={newCategoryName}
+                            onChange={(e) => setNewCategoryName(e.target.value)}
+                            required
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          className="btn btn-primary mt-2"
+                          onClick={() => {
+                            updateCategory(categoryId);
+                          }}
+                        >
+                          Update
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="col-md-8">
-            <h2 className="mt-4">Menu</h2>
+            <div className="col-md-8">
+              <h2 className="mt-4">Menu</h2>
 
-            {/* <div class="container"> */}
-            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-              {categories &&
-                categories.map((category) => (
-                  <li class="nav-item" role="presentation">
-                    <button
-                      class={`nav-link ${
-                        selectedCategory === category.name ? "active" : ""
+              {/* <div class="container"> */}
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                {categories &&
+                  categories.map((category) => (
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class={`nav-link ${
+                          selectedCategory === category.name ? "active" : ""
+                        }`}
+                        onClick={() => filterItemsByCategory(category.name)}
+                        role="tab"
+                      >
+                        <h5>{category.name}</h5>
+                      </button>
+                    </li>
+                  ))}
+              </ul>
+
+              <div class="tab-content" id="pills-tabContent">
+                {categories &&
+                  categories.map((category) => (
+                    <div
+                      class={`tab-pane fade ${
+                        selectedCategory === category.name ? "show active" : ""
                       }`}
-                      onClick={() => filterItemsByCategory(category.name)}
-                      role="tab"
+                      role="tabpanel"
                     >
-                      <h5>{category.name}</h5>
-                    </button>
-                  </li>
-                ))}
-            </ul>
-
-            <div class="tab-content" id="pills-tabContent">
-              {categories &&
-                categories.map((category) => (
-                  <div
-                    class={`tab-pane fade ${
-                      selectedCategory === category.name ? "show active" : ""
-                    }`}
-                    role="tabpanel"
-                  >
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          <th scope="col">Category</th>
-                          <th scope="col">Name</th>
-                          <th scope="col">Price</th>
-                          <th scope="col">Description</th>
-                          <th scope="col">Image</th>
-                          <th scope="col">Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {Items &&
-                          Items.filter(
-                            (item) => item.category.name === category.name
-                          ).map((item) => (
-                            <tr key={item.id}>
-                              <td>{item.category?.name}</td>
-                              <td>{item.name}</td>
-                              <td>{item.price}</td>
-                              <td>{item.description}</td>
-                              <td>
-                                {item.image && (
-                                  <img
-                                    src={`/images/${item.image}`}
-                                    alt="Item Image"
-                                    style={{ maxWidth: "100px" }}
-                                  />
-                                )}
-                              </td>
-                              <td>
-                                <div className="btn-group" role="group">
-                                  <button
-                                    className="btn btn-primary me-2"
-                                    onClick={() => {
-                                      setEdit(item.id);
-                                      setName(item.name);
-                                      setPrice(item.price);
-                                      setDescription(item.description);
-                                      setCategoryId(item.category.id);
-                                      setActiveTab("items");
-                                    }}
-                                  >
-                                    Edit
-                                  </button>
-                                  <button
-                                    className="btn btn-danger"
-                                    onClick={() => handleDelete(item.id)}
-                                  >
-                                    Delete
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </table>
-                  </div>
-                ))}
+                      <table className="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Category</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {Items &&
+                            Items.filter(
+                              (item) => item.category.name === category.name
+                            ).map((item) => (
+                              <tr key={item.id}>
+                                <td>{item.category?.name}</td>
+                                <td>{item.name}</td>
+                                <td>{item.price}</td>
+                                <td>{item.description}</td>
+                                <td>
+                                  {item.image && (
+                                    <img
+                                      src={`/images/${item.image}`}
+                                      alt="Item Image"
+                                      style={{ maxWidth: "100px" }}
+                                    />
+                                  )}
+                                </td>
+                                <td>
+                                  <div className="btn-group" role="group">
+                                    <button
+                                      className="btn btn-primary me-2"
+                                      onClick={() => {
+                                        setEdit(item.id);
+                                        setName(item.name);
+                                        setPrice(item.price);
+                                        setDescription(item.description);
+                                        setCategoryId(item.category.id);
+                                        setActiveTab("items");
+                                      }}
+                                    >
+                                      Edit
+                                    </button>
+                                    <button
+                                      className="btn btn-danger"
+                                      onClick={() => handleDelete(item.id)}
+                                    >
+                                      Delete
+                                    </button>
+                                  </div>
+                                </td>
+                              </tr>
+                            ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ))}
+              </div>
+              {/* </div> */}
             </div>
-            {/* </div> */}
           </div>
         </div>
       </div>

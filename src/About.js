@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const About = () => {
   return (
+    <div className="item-body">
     <div className="container">
       <div className="jumbotron">
         <h1 className="display-4">About Shanghai Family Restaurant</h1>
@@ -37,6 +38,7 @@ const About = () => {
         </p>
       </div>
     </div>
+  </div>
   );
 };
 

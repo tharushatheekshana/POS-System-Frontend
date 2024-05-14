@@ -2,6 +2,7 @@ import React from 'react';
 
 const Contact = () => {
     return (
+        <div className="item-body">
         <div className="container">
             <h1>Contact Us</h1>
             <div className="card">
@@ -43,6 +44,7 @@ const Contact = () => {
                 <p>&copy; 2022 Restaurant Name. All rights reserved.</p>
             </footer>
         </div>
+    </div>
     );
 };
 
