@@ -12,7 +12,6 @@ const AuthContext = createContext({
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [jwtToken, setJwtToken] = useState(null);
-  const [user, setUser] = useState(null);
 
   const login = (token) => {
     setIsAuthenticated(true);

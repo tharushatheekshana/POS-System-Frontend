@@ -4,7 +4,7 @@ import axios from "axios";
 import { useReactToPrint } from "react-to-print";
 import { useAuth } from "./utils/AuthContext";
 import { Button, Modal } from "react-bootstrap";
-import { useOrder } from "./OrderContext";
+import { useOrder } from "./utils/OrderContext";
 import "./App.css";
 
 function CheckOut({ orders }) {
@@ -192,8 +192,8 @@ function CheckOut({ orders }) {
   return (
     <div>
       {/* {CheckOut Page} */}
-      <div className="col-3 bg-dark">
-        <div className="container mt-2">
+      <div className="">
+        <div className="">
           <div className="checkout position-fixed">
             <h2>Enter Table Number</h2>
             <div className="input-group mb-3">

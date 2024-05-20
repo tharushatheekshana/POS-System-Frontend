@@ -17,7 +17,8 @@ import Cart from "./Cart";
 import Stocks from "./Stocks";
 import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./utils/ProtectedRoute";
-import { OrderProvider } from "./OrderContext";
+import { OrderProvider } from "./utils/OrderContext";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (

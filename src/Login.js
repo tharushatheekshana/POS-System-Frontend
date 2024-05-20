@@ -122,16 +122,16 @@ function Login() {
           <form onSubmit={handleSignUp}>
             <h1>Create Account</h1>
             <div className="social-icons">
-              <a href="#" className="icon">
+              <a href="" className="icon">
                 <i class="bi bi-google"></i>
               </a>
-              <a href="#" className="icon">
+              <a href="" className="icon">
                 <i class="bi bi-facebook"></i>{" "}
               </a>
-              <a href="#" className="icon">
+              <a href="" className="icon">
                 <i class="bi bi-github"></i>{" "}
               </a>
-              <a href="#" className="icon">
+              <a href="" className="icon">
                 <i class="bi bi-linkedin"></i>{" "}
               </a>
             </div>

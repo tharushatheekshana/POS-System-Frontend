@@ -30,7 +30,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start | findstr /v /c:\"@react-aria/ssr\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@react-aria/ssr": "^3.9.3",
     "@types/bootstrap": "^5.2.10"
   }
 }

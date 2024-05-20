@@ -1,15 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Menu from "./Menu";
-import { createContext, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Button, Modal } from "react-bootstrap";
 import "./App.css";
-import { useReactToPrint } from "react-to-print";
 import { useAuth } from "./utils/AuthContext";
-import { useContext } from "react";
 import CheckOut from "./CheckOut";
-import { useOrder } from "./OrderContext";
+import { useOrder } from "./utils/OrderContext";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 function Home() {
   const [items, setItems] = useState([]);
@@ -21,13 +19,9 @@ function Home() {
   const [cart, setCart] = useState(null);
   const [show, setShow] = useState(false);
   const { isAuthenticated, jwtToken } = useAuth();
-  const [orderComplete, setOrderComplete] = useState(false);
 
   const { isOrderCreated, orderId, table } = useOrder();
   console.log(isOrderCreated, orderId, table);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const config = {
     headers: {
@@ -64,8 +58,6 @@ function Home() {
       return;
     }
 
-    const quantity = quantityMap.get(item.id) || 1; // Get quantity from map or default to 1
-
     const data = {
       itemId: item.id,
       quantity: quantityMap.get(item.id) || 1,
@@ -86,8 +78,6 @@ function Home() {
   }
 
   function addItemToCart(item) {
-    const quantity = quantityMap.get(item.id) || 1; // Get quantity from map or default to 1
-
     const data = {
       name: item.name, // Access item name properly
       quantity: quantityMap.get(item.id) || 1,
@@ -124,47 +114,58 @@ function Home() {
   }
 
   return (
-    <div className="">
-      <div className="row">
-        <div className="col custom-menu">
-          <Menu />
-        </div>
-        <div className="col-lg-7 col-md-7 col-sm-7 item-body">
-          <div className="container mt-3">
-            <nav
-              id="navbar-example2"
-              className="navbar  position-fixed"
-              style={{
-                width: "56%",
-                top: "0.5",
-                zIndex: "1000",
-                backgroundColor: "white", // Solid background color to prevent content penetration
-                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", // Optional: Adds a subtle shadow for better visibility
-              }}
-            >
-              <ul className="nav nav-pills d-flex flex-row">
-                {categories &&
-                  categories.map((category) => (
-                    <li className="nav-item" key={category.name}>
-                      <a className="nav-link" href={`#${category.name}`}>
-                        {category.name}
-                      </a>
-                    </li>
-                  ))}
-              </ul>
-            </nav>
-            <div
-              data-bs-spy="scroll"
-              data-bs-target="#navbar-example2"
-              data-bs-root-margin="0px 0px -40%"
-              data-bs-smooth-scroll="true"
-              className="scrollspy-example bg-body-tertiary p-3 rounded-2"
-              tabIndex="0"
-              // style={{ paddingTop: "1000px" }} // Adjust this value based on your navbar height
-            >
+    <div className="row">
+      <div
+        className="col-md-2 d-none d-md-block"
+        style={{ backgroundColor: "#212529" }}
+      >
+        <Menu />
+      </div>
+      <div
+        className="col-md-7 col-sm-8"
+        // style={{ backgroundColor: "lightgreen" }}
+        style={{ backgroundColor: "#212529" }}
+      >
+        <div className="home">
+          <nav id="navbar-example2" className="navbar navbar-expand-md bg-dark">
+            <ul className="nav nav-pills d-flex flex-row">
+              {categories &&
+                categories.map((category) => (
+                  <li
+                    className="nav-item"
+                    key={category.name}
+                    style={{
+                      backgroundColor: "white",
+                      color: "white",
+                      borderRadius: "50px",
+                      margin: "5px",
+                    }}
+                  >
+                    <a className="nav-link" href={`#${category.name}`}>
+                      {category.name}
+                    </a>
+                  </li>
+                ))}
+            </ul>
+          </nav>
+          <div
+            data-bs-spy="scroll"
+            data-bs-target="#navbar-example2"
+            data-bs-root-margin="0px 0px -40%"
+            data-bs-smooth-scroll="true"
+            className="scrollspy-example bg-body-tertiary  rounded-2"
+            tabIndex="0"
+            // style={{ paddingTop: "1000px" }} // Adjust this value based on your navbar height
+          >
+            <div className="home-items">
               {categories.map((category) => (
                 <div key={category.id}>
-                  <h2 id={category.name}>{category.name}</h2>
+                  <h2
+                    id={category.name}
+                    style={{ paddingTop: "200px", marginTop: "-200px" }}
+                  >
+                    {category.name}
+                  </h2>
                   <hr />
                   <div className="row">
                     {items
@@ -241,9 +242,13 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="col-3 custom-checkout">
-          <CheckOut orders={orders} />
-        </div>
+      </div>
+      <div
+        className="col-md-3 col-sm-4"
+        // style={{ backgroundColor: "lightyellow" }}
+        style={{ backgroundColor: "#212529" }}
+      >
+        <CheckOut orders={orders} />
       </div>
     </div>
   );

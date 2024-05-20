@@ -20,8 +20,8 @@ function Menu() {
   }, []);
 
   return (
-    <div class="custom-menu">
-      <nav className="d-flex flex-column flex-shrink-0 p-3 custom-menu vh-100 position-fixed">
+    <div class="menu">
+      <nav className="d-flex flex-column flex-shrink-0 p-3 position-fixed ">
         <div>
           <h2>{currentTime.toLocaleDateString()}</h2>
 

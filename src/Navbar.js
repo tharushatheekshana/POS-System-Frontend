@@ -1,12 +1,8 @@
-import { Button, useColorMode } from "@chakra-ui/react";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 
 function Navbar() {
-  const { colorMode, toggleColorMode } = useColorMode();
-
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark sticky-top custom-navbar">
+    <nav className="navbar navbar-expand-md navbar-dark menu-nav fixed-top">
       <div class="container-fluid">
         <Link to="/" class="navbar-brand">
           <h2>Shanghai Family Restaurant</h2>

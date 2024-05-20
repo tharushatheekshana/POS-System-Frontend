@@ -14,50 +14,71 @@
   font-size: 75rem;
 } */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .col-7 {
     flex: 1 0 auto;
     max-width: 100%;
   }
-}
+} */
 
 /* .my-navbar {
   background-color: #512da8;
 } */
 
 .body {
-  background-color: #29221d;
+  background-color: #212529;
   color: green;
 }
 
-.category-nav {
-  background-color: #29221d;
+.menu {
+  color: white;
+  margin-top: 100px;
+}
+
+.checkout {
+  margin-top: 100px;
   color: white;
 }
 
-.custom-navbar {
-  background-color: #29221d;
+.fixed-top {
+  padding: 20px 0 20px 8px;
+}
+
+#navbar-example2 {
+  /* position: absolute; */
+  position: sticky;
+  top: 8%;
+  /* position: fixed; */
+  z-index: 1;
+  width: auto;
+}
+
+.menu-nav {
+  background-color: #212529;
   color: white;
 }
 
-.custom-menu {
-  background-color: #29221d;
-  color: white;
+.home {
 }
 
 .custom-checkout {
-  background-color: #29221d;
+  background-color: #212529;
+  color: white;
+}
+
+.home-items {
+  margin-top: 70px;
+  background-color: #212529;
   color: white;
 }
 
 .item-body {
-  background-color: #29221d;
+  background-color: #212529;
   color: white;
   min-height: 100vh;
 }
-
-.orders-body {
-  background-color: #29221d;
+z .orders-body {
+  background-color: #212529;
   color: white;
 }
 
@@ -86,9 +107,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  /* margin: 0;
+  padding: 0; */
+  /* box-sizing: border-box; */
   font-family: "Poetsen One", cursive;
 }
 .order-button {
