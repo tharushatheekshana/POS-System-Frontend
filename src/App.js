@@ -8,7 +8,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./Navbar";
 import CheckOut from "./CheckOut";
-import Orders from "./Orders";
 import About from "./About";
 import Contact from "./Contact";
 import Help from "./Help";
@@ -19,6 +18,8 @@ import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import { OrderProvider } from "./utils/OrderContext";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Orders from "./Orders/Orders";
+import EditOrders from "./Orders/EditOrders";
 
 function App() {
   return (
@@ -57,11 +58,20 @@ function App() {
               }
             />
             <Route
-              path="/orders"
+              path="/Orders"
               element={
                 <>
                   <Navbar />
                   <Orders />
+                </>
+              }
+            />
+            <Route
+              path="/orders/editOrder/:id"
+              element={
+                <>
+                  <Navbar />
+                  <EditOrders />
                 </>
               }
             />

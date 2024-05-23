@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import "./App.css";
-import { useAuth } from "./utils/AuthContext";
+import "../App.css";
+import { useAuth } from "../utils/AuthContext";
 
 function Orders() {
   const [orders, setOrders] = useState(null);
@@ -45,18 +45,18 @@ function Orders() {
       });
   };
 
-  const handleRemoveItemFromOrder = (orderId, itemId) => {
-    axios
-      .delete(`http://localhost:8080/orders/${orderId}/item/${itemId}`, config)
-      .then(() => {
-        toast.success("Item removed from order");
-        getOrders();
-      })
-      .catch((error) => {
-        console.error("Error removing item from order:", error);
-        toast.error("Failed to remove item from order");
-      });
-  };
+  // const handleRemoveItemFromOrder = (orderId, itemId) => {
+  //   axios
+  //     .delete(`http://localhost:8080/orders/${orderId}/item/${itemId}`, config)
+  //     .then(() => {
+  //       toast.success("Item removed from order");
+  //       getOrders();
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error removing item from order:", error);
+  //       toast.error("Failed to remove item from order");
+  //     });
+  // };
 
   const formatDateTime = (dateTimeString) => {
     const options = {
@@ -110,7 +110,7 @@ function Orders() {
                                   </p>
                                 </div>
                                 <span>
-                                  <button
+                                  {/* <button
                                     className="btn btn-danger btn-sm"
                                     onClick={() =>
                                       handleRemoveItemFromOrder(
@@ -120,7 +120,7 @@ function Orders() {
                                     }
                                   >
                                     Remove
-                                  </button>
+                                  </button> */}
                                 </span>
                               </div>
                             </li>
@@ -129,6 +129,14 @@ function Orders() {
                       </td>
                       <td>Rs.{order.totalPrice}</td>
                       <td>
+                        <button
+                          className="btn btn-primary me-2"
+                          onClick={() => {
+                            window.location.href = `orders/editOrder/${order.id}`;
+                          }}
+                        >
+                          Edit Order
+                        </button>
                         <button
                           className="btn btn-danger"
                           onClick={() => handleCancelOrder(order.id)}

@@ -40,7 +40,7 @@ function Navbar() {
                 Stocks
               </Link>
             </li>
-            <li class="nav-item">
+            {/* <li class="nav-item">
               <Link
                 to="/categories"
                 class="nav-link active"
@@ -48,7 +48,7 @@ function Navbar() {
               >
                 Categories
               </Link>
-            </li>
+            </li> */}
 
             {/* <li class="nav-item dropdown">
               <a

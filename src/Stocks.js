@@ -122,7 +122,7 @@ function Stocks() {
   }
 
   return (
-    <div className="item-body">
+    <div className="item-body" >
       <div className="container">
         <h1> Kitchen Stocks</h1>
         <hr />

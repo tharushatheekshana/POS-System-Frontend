@@ -80,7 +80,7 @@ function Cart() {
   };
 
   return (
-    <div className="item-body">
+    <div className="item-body" > 
       <div className="container">
         <h1 className="text-center mb-4">Your Cart</h1>
         {cart.length === 0 ? (

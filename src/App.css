@@ -32,7 +32,7 @@
 
 .menu {
   color: white;
-  margin-top: 100px;
+  margin-top: 70px;
 }
 
 .checkout {
@@ -76,6 +76,7 @@
   background-color: #212529;
   color: white;
   min-height: 100vh;
+  margin-top: 65px;
 }
 z .orders-body {
   background-color: #212529;
